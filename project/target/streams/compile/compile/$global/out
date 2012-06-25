@@ -1,0 +1,137 @@
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mInitial source changes: [0m
+[0m[[0mdebug[0m] [0m	removed:Set()[0m
+[0m[[0mdebug[0m] [0m	added: Set(/home/peter/school/research2012/zombie/project/SimpleGame.java)[0m
+[0m[[0mdebug[0m] [0m	modified: Set()[0m
+[0m[[0mdebug[0m] [0mRemoved products: Set()[0m
+[0m[[0mdebug[0m] [0mModified external sources: Set()[0m
+[0m[[0mdebug[0m] [0mModified binary dependencies: Set()[0m
+[0m[[0mdebug[0m] [0mInitial directly invalidated sources: Set(/home/peter/school/research2012/zombie/project/SimpleGame.java)[0m
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mSources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m	product: Set()[0m
+[0m[[0mdebug[0m] [0m	binary dep: Set()[0m
+[0m[[0mdebug[0m] [0m	external source: Set()[0m
+[0m[[0mdebug[0m] [0mInitially invalidated: Set(/home/peter/school/research2012/zombie/project/SimpleGame.java)[0m
+[0m[[0minfo[0m] [0mCompiling 1 Java source to /home/peter/school/research2012/zombie/project/target/scala-2.9.1/sbt-0.11.3/classes...[0m
+[0m[[0mdebug[0m] [0mrunning javac with arguments:[0m
+[0m[[0mdebug[0m] [0m	-d[0m
+[0m[[0mdebug[0m] [0m	/home/peter/school/research2012/zombie/project/target/scala-2.9.1/sbt-0.11.3/classes[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/home/peter/school/research2012/zombie/project/target/scala-2.9.1/sbt-0.11.3/classes:/home/peter/.ivy2/cache/scala_2.9.1/sbt_0.11.3/com.github.mpeltonen/sbt-idea/jars/sbt-idea-1.0.0.jar:/home/peter/.ivy2/cache/commons-io/commons-io/jars/commons-io-2.0.1.jar:/home/peter/.ivy2/cache/org.scala-sbt/sbt_2.9.1/jars/sbt_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/main_2.9.1/jars/main_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/actions_2.9.1/jars/actions_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/classfile_2.9.1/jars/classfile_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/io_2.9.1/jars/io_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/control_2.9.1/jars/control_2.9.1-0.11.3.jar:/home/peter/.sbt/boot/scala-2.9.1/lib/scala-library.jar:/home/peter/.ivy2/cache/org.scala-sbt/interface/jars/interface-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/logging_2.9.1/jars/logging_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/process_2.9.1/jars/process_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/classpath_2.9.1/jars/classpath_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/launcher-interface_2.9.1/jars/launcher-interface_2.9.1-0.11.3.jar:/home/peter/.sbt/boot/scala-2.9.1/lib/scala-compiler.jar:/home/peter/.ivy2/cache/org.scala-sbt/incremental-compiler_2.9.1/jars/incremental-compiler_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/collections_2.9.1/jars/collections_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/api_2.9.1/jars/api_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/persist_2.9.1/jars/persist_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-tools.sbinary/sbinary_2.9.0/jars/sbinary_2.9.0-0.4.0.jar:/home/peter/.ivy2/cache/org.scala-sbt/compile_2.9.1/jars/compile_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/ivy_2.9.1/jars/ivy_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.apache.ivy/ivy/jars/ivy-2.2.0.jar:/home/peter/.ivy2/cache/com.jcraft/jsch/jars/jsch-0.1.46.jar:/home/peter/.ivy2/cache/commons-httpclient/commons-httpclient/jars/commons-httpclient-3.1.jar:/home/peter/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.0.4.jar:/home/peter/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.2.jar:/home/peter/.ivy2/cache/org.scala-sbt/completion_2.9.1/jars/completion_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/jline/jline/jars/jline-0.9.94.jar:/home/peter/.ivy2/cache/org.scala-sbt/run_2.9.1/jars/run_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/task-system_2.9.1/jars/task-system_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/tasks_2.9.1/jars/tasks_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/tracking_2.9.1/jars/tracking_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/cache_2.9.1/jars/cache_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/testing_2.9.1/jars/testing_2.9.1-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-tools.testing/test-interface/jars/test-interface-0.5.jar:/home/peter/.ivy2/cache/org.scala-sbt/compiler-interface/jars/compiler-interface-bin-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/compiler-interface/jars/compiler-interface-src-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/precompiled-2_8_2/jars/compiler-interface-bin-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/precompiled-2_8_1/jars/compiler-interface-bin-0.11.3.jar:/home/peter/.ivy2/cache/org.scala-sbt/precompiled-2_9_2/jars/compiler-interface-bin-0.11.3.jar:/home/peter/.sbt/boot/scala-2.9.1/lib/scala-library.jar[0m
+[0m[[0mdebug[0m] [0m	/home/peter/school/research2012/zombie/project/SimpleGame.java[0m
+[0m[[0mdebug[0m] [0mcom.sun.tools.javac.Main not found; forking javac instead[0m
+[0m[[0mdebug[0m] [0mForking javac: javac @/tmp/sbt_928fe4f3/argfile[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:8: package org.newdawn.slick does not exist[0m
+[0m[[31merror[0m] [0mimport org.newdawn.slick.AppGameContainer;[0m
+[0m[[31merror[0m] [0m                        ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:9: package org.newdawn.slick does not exist[0m
+[0m[[31merror[0m] [0mimport org.newdawn.slick.BasicGame;[0m
+[0m[[31merror[0m] [0m                        ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:10: package org.newdawn.slick does not exist[0m
+[0m[[31merror[0m] [0mimport org.newdawn.slick.GameContainer;[0m
+[0m[[31merror[0m] [0m                        ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:11: package org.newdawn.slick does not exist[0m
+[0m[[31merror[0m] [0mimport org.newdawn.slick.Graphics;[0m
+[0m[[31merror[0m] [0m                        ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:12: package org.newdawn.slick does not exist[0m
+[0m[[31merror[0m] [0mimport org.newdawn.slick.SlickException;[0m
+[0m[[31merror[0m] [0m                        ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:14: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol: class BasicGame[0m
+[0m[[31merror[0m] [0mpublic class SimpleGame extends BasicGame{[0m
+[0m[[31merror[0m] [0m                                ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:22: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol  : class GameContainer[0m
+[0m[[31merror[0m] [0mlocation: class SimpleGame[0m
+[0m[[31merror[0m] [0m    public void init(GameContainer gc) {[0m
+[0m[[31merror[0m] [0m                     ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:27: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol  : class GameContainer[0m
+[0m[[31merror[0m] [0mlocation: class SimpleGame[0m
+[0m[[31merror[0m] [0m    public void update(GameContainer gc, int delta)[0m
+[0m[[31merror[0m] [0m                       ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:28: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol  : class SlickException[0m
+[0m[[31merror[0m] [0mlocation: class SimpleGame[0m
+[0m[[31merror[0m] [0m            throws SlickException[0m
+[0m[[31merror[0m] [0m                   ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:33: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol  : class GameContainer[0m
+[0m[[31merror[0m] [0mlocation: class SimpleGame[0m
+[0m[[31merror[0m] [0m    public void render(GameContainer gc, Graphics g)[0m
+[0m[[31merror[0m] [0m                       ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:33: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol  : class Graphics[0m
+[0m[[31merror[0m] [0mlocation: class SimpleGame[0m
+[0m[[31merror[0m] [0m    public void render(GameContainer gc, Graphics g)[0m
+[0m[[31merror[0m] [0m                                         ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:34: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol  : class SlickException[0m
+[0m[[31merror[0m] [0mlocation: class SimpleGame[0m
+[0m[[31merror[0m] [0m            throws SlickException[0m
+[0m[[31merror[0m] [0m                   ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:40: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol  : class SlickException[0m
+[0m[[31merror[0m] [0mlocation: class SimpleGame[0m
+[0m[[31merror[0m] [0m            throws SlickException[0m
+[0m[[31merror[0m] [0m                   ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:21: method does not override or implement a method from a supertype[0m
+[0m[[31merror[0m] [0m    @Override[0m
+[0m[[31merror[0m] [0m    ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:26: method does not override or implement a method from a supertype[0m
+[0m[[31merror[0m] [0m    @Override[0m
+[0m[[31merror[0m] [0m    ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:42: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol  : class AppGameContainer[0m
+[0m[[31merror[0m] [0mlocation: class SimpleGame[0m
+[0m[[31merror[0m] [0m        AppGameContainer app =[0m
+[0m[[31merror[0m] [0m        ^[0m
+[0m[[31merror[0m] [0m/home/peter/school/research2012/zombie/project/SimpleGame.java:43: cannot find symbol[0m
+[0m[[31merror[0m] [0msymbol  : class AppGameContainer[0m
+[0m[[31merror[0m] [0mlocation: class SimpleGame[0m
+[0m[[31merror[0m] [0m                new AppGameContainer(new SimpleGame());[0m
+[0m[[31merror[0m] [0m                    ^[0m
+[0m[[31merror[0m] [0m17 errors[0m
+[0m[[0mdebug[0m] [0mjavac returned exit code: 1[0m
+javac returned nonzero exit code
+	at sbt.compiler.JavaCompiler$$anon$1.apply(JavaCompiler.scala:26)
+	at sbt.AggressiveCompile$$anonfun$5$$anonfun$compileJava$1$1.apply$mcV$sp(AggressiveCompile.scala:76)
+	at sbt.classfile.Analyze$.apply(Analyze.scala:93)
+	at sbt.AggressiveCompile$$anonfun$5.compileJava$1(AggressiveCompile.scala:75)
+	at sbt.AggressiveCompile$$anonfun$5.apply(AggressiveCompile.scala:79)
+	at sbt.AggressiveCompile$$anonfun$5.apply(AggressiveCompile.scala:57)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:21)
+	at sbt.inc.IncrementalCompile$$anonfun$doCompile$1.apply(Compile.scala:19)
+	at sbt.inc.Incremental$.cycle(Incremental.scala:33)
+	at sbt.inc.Incremental$.compile(Incremental.scala:20)
+	at sbt.inc.IncrementalCompile$.apply(Compile.scala:17)
+	at sbt.AggressiveCompile.compile2(AggressiveCompile.scala:87)
+	at sbt.AggressiveCompile.compile1(AggressiveCompile.scala:41)
+	at sbt.AggressiveCompile.apply(AggressiveCompile.scala:28)
+	at sbt.Compiler$.apply(Compiler.scala:107)
+	at sbt.Defaults$$anonfun$compileTask$1.apply(Defaults.scala:479)
+	at sbt.Defaults$$anonfun$compileTask$1.apply(Defaults.scala:479)
+	at sbt.Scoped$$anonfun$hf2$1.apply(Structure.scala:473)
+	at sbt.Scoped$$anonfun$hf2$1.apply(Structure.scala:473)
+	at scala.Function1$$anonfun$compose$1.apply(Function1.scala:41)
+	at sbt.Scoped$Reduced$$anonfun$combine$1$$anonfun$apply$11.apply(Structure.scala:295)
+	at sbt.Scoped$Reduced$$anonfun$combine$1$$anonfun$apply$11.apply(Structure.scala:295)
+	at sbt.$tilde$greater$$anonfun$$u2219$1.apply(TypeFunctions.scala:40)
+	at sbt.std.Transform$$anon$5.work(System.scala:67)
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:221)
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:221)
+	at sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:18)
+	at sbt.Execute.work(Execute.scala:227)
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:221)
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:221)
+	at sbt.CompletionService$$anon$1$$anon$2.call(CompletionService.scala:26)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+[0m[[31merror[0m] [0m{file:/home/peter/school/research2012/zombie/project/}default-53aa70/compile:[31mcompile[0m: javac returned nonzero exit code[0m
