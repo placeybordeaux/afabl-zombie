@@ -9,5 +9,5 @@ package pureslick
  */
 
 trait Renderable {
-
+  def render
 }

@@ -13,9 +13,9 @@ import org.newdawn.slick.Image
  * To change this template use File | Settings | File Templates.
  */
 
-class Wall(world: World, pos: Vec2) {
+class Wall(world: World, pos: Vec2) extends Renderable {
   val image = new Image("data/wall.png")
-  val body = createBody(world,pos)
+  val body = createBody(world, pos)
 
   def createBody(world: World, pos: Vec2) = {
     val bodyDef = new BodyDef()
@@ -31,7 +31,7 @@ class Wall(world: World, pos: Vec2) {
     bodyFixture.filter.groupIndex = -1
 
     val footShape = new PolygonShape()
-    footShape.setAsBox(image.getWidth / 2, image.getHeight*3/4 / 2, new Vec2(0, image.getHeight/4 / 2), 0f)
+    footShape.setAsBox(image.getWidth / 2, image.getHeight * 3 / 4 / 2, new Vec2(0, image.getHeight / 4 / 2), 0f)
     val footFixture = new FixtureDef()
     footFixture.shape = footShape
     footFixture.filter.categoryBits = 0x0001
@@ -46,6 +46,6 @@ class Wall(world: World, pos: Vec2) {
   }
 
   def render() = {
-    image.draw(body.getPosition.x,body.getPosition.y)
+    image.draw(body.getPosition.x, body.getPosition.y)
   }
 }

@@ -18,5 +18,6 @@ class Zombie(world: World) extends Humanoid {
   var health = 200
 
   override def update(observation: Observation) = {
+
   }
 }

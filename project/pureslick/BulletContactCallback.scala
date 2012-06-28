@@ -32,8 +32,8 @@ class BulletContactCallback extends ContactListener {
   }
 
   def preSolve(p1: Contact, p2: Manifold) {
-    handleNodes(p1.m_nodeA,p1.m_nodeB)
-    handleNodes(p1.m_nodeB,p1.m_nodeA)
+    handleNodes(p1.m_nodeA, p1.m_nodeB)
+    handleNodes(p1.m_nodeB, p1.m_nodeA)
 
   }
 

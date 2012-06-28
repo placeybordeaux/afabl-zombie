@@ -13,7 +13,7 @@ import org.newdawn.slick.Image
  * To change this template use File | Settings | File Templates.
  */
 
-trait Humanoid {
+trait Humanoid extends Renderable {
   val image: Image
   val body: Body
   var health: Int
@@ -63,7 +63,7 @@ trait Humanoid {
 
 
   def render() = {
-    image.draw(body.getPosition.x, body.getPosition.y)
+    image.draw(body.getPosition.x - image.getWidth/2, body.getPosition.y - image.getHeight/2)
   }
 
 

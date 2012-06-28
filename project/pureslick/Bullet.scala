@@ -13,7 +13,7 @@ import org.newdawn.slick.Image
  * To change this template use File | Settings | File Templates.
  */
 
-class Bullet(world: World, pos: Vec2, velc: Vec2) {
+class Bullet(world: World, pos: Vec2, velc: Vec2) extends Renderable {
   val body = createBody(world, pos, velc)
   val image = new Image("data/bullet.png")
   var collided = false
@@ -37,7 +37,8 @@ class Bullet(world: World, pos: Vec2, velc: Vec2) {
     bodyFixture.shape = bodyShape
     bodyFixture.density = 0.00005f
     bodyFixture.filter.categoryBits = 0x0004
-    bodyFixture.filter.maskBits = 0x0002
+    bodyFixture.filter.maskBits = 0x0007
+    bodyFixture.filter.groupIndex = -2
 
     val body = world.createBody(bodyDef)
     body.createFixture(bodyFixture)

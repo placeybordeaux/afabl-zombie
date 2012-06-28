@@ -10,4 +10,5 @@ package pureslick
 
 class Observation(x: Float, y: Float) {
 
+
 }

@@ -3,7 +3,6 @@ package pureslick
 import org.newdawn.slick.{Image, AppGameContainer, BasicGame, GameContainer}
 import org.jbox2d.dynamics.World
 import org.jbox2d.common.Vec2
-import util.BulletContactCallback
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,14 +22,14 @@ object SimpleGame extends BasicGame("Zombie") {
   def init(gc: GameContainer) = {
     player = new Player(new Image("data/player.png"), b2World)
     z = new Zombie(b2World)
-    wall = new Wall(b2World,new Vec2(30f,30f))
+    wall = new Wall(b2World, new Vec2(30f, 30f))
     gc.setMouseCursor(new Image("data/crosshairs.png"), 20, 20)
 
     b2World.setContactListener(new BulletContactCallback)
     //debug draw
-    //val sDD = new Slick2dDebugDraw(gc.getGraphics,gc)
-    //sDD.setFlags(0x0001)
-    //b2World.setDebugDraw(sDD)
+    val sDD = new Slick2dDebugDraw(gc.getGraphics,gc)
+    sDD.setFlags(0x0001)
+    b2World.setDebugDraw(sDD)
   }
 
   def update(gc: GameContainer, delta: Int) = {
@@ -41,7 +40,7 @@ object SimpleGame extends BasicGame("Zombie") {
   }
 
   def render(gc: GameContainer, g: org.newdawn.slick.Graphics) = {
-
+    g.translate(400 - player.body.getPosition.x, 300 - player.body.getPosition.y)
     player.render()
     z.render()
     b2World.drawDebugData()
