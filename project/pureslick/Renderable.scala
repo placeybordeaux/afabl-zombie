@@ -10,4 +10,5 @@ package pureslick
 
 trait Renderable extends {
   def render
+
 }

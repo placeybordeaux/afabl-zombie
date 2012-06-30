@@ -61,7 +61,7 @@ trait Humanoid extends GameObject {
 
 
   def render() = {
-    image.draw(body.getPosition.x - image.getWidth/2, body.getPosition.y - image.getHeight/2)
+    image.draw(body.getPosition.x - image.getWidth / 2, body.getPosition.y - image.getHeight / 2)
   }
 
 

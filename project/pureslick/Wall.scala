@@ -16,6 +16,8 @@ import org.newdawn.slick.Image
 class Wall(world: World, pos: Vec2) extends GameObject {
   val image = new Image("data/wall.png")
   val body = createBody(world, pos)
+  var x = body.getPosition.x
+  var y = body.getPosition.y
 
   def createBody(world: World, pos: Vec2) = {
     val bodyDef = new BodyDef()
