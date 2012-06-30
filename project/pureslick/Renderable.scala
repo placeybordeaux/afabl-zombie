@@ -10,4 +10,7 @@ package pureslick
 
 trait Renderable {
   def render
+
+  var x: Float
+  var y: Float
 }

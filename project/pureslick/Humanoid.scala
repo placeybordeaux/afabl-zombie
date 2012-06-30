@@ -13,16 +13,14 @@ import org.newdawn.slick.Image
  * To change this template use File | Settings | File Templates.
  */
 
-trait Humanoid extends Renderable {
+trait Humanoid extends GameObject {
   val image: Image
   val body: Body
   var health: Int
 
   def die = {
-    println("died")
+    isGarbage = true
   }
-
-  def update(observation: Observation) = {}
 
   def damaged(amount: Int) = {
     health -= amount
@@ -63,7 +61,7 @@ trait Humanoid extends Renderable {
 
 
   def render() = {
-    image.draw(body.getPosition.x - image.getWidth/2, body.getPosition.y - image.getHeight/2)
+    image.draw(body.getPosition.x - image.getWidth / 2, body.getPosition.y - image.getHeight / 2)
   }
 
 

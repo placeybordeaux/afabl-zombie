@@ -14,15 +14,17 @@ import org.newdawn.slick.Image
  */
 
 class Bullet(world: World, pos: Vec2, velc: Vec2) extends Renderable {
+
   val body = createBody(world, pos, velc)
   val image = new Image("data/bullet.png")
   var collided = false
+  var x = pos.x
+  var y = pos.y
 
   def collide() = {
     collided = true
     body.destroyFixture(body.getFixtureList)
     body.getWorld().destroyBody(body)
-
   }
 
   def createBody(world: World, pos: Vec2, velc: Vec2) = {
@@ -50,5 +52,11 @@ class Bullet(world: World, pos: Vec2, velc: Vec2) extends Renderable {
   def render() = {
     image.draw(body.getPosition.x, body.getPosition.y)
   }
+
+  def update = {
+    x = body.getPosition.x
+    y = body.getPosition.y
+  }
+
 
 }

@@ -8,7 +8,6 @@ package pureslick
  * To change this template use File | Settings | File Templates.
  */
 
-class Observation(x: Float, y: Float) {
-
-
+class Observation(humanoids: List[Humanoid]) {
+  def Humanoids = humanoids
 }

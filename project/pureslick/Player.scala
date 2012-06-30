@@ -20,6 +20,8 @@ class Player(img: Image, world: World) extends Humanoid {
   var health = 100
   var bullets = ListBuffer[Bullet]()
   var cooldown = 0
+  var x = 0f
+  var y = 0f
 
   def handleInput(input: Input) = {
     var x, y = 0
@@ -56,16 +58,16 @@ class Player(img: Image, world: World) extends Humanoid {
         posy = mouseY
       new Vec2(posx, posy)
     }
-    if (cooldown == 0){
-    val pos = getPositionVec
-    val direction = new Vec2(mouseX - pos.x, mouseY - pos.y)
-    direction.normalize
-    println("mouse (" + input.getMouseX + "," + input.getMouseY + ")")
-    println("body" + body.getPosition)
-    println("dir" + direction)
-    println("pos" + pos)
-    bullets.append(new Bullet(world, pos, direction.mul(600000)))
-    cooldown = 0
+    if (cooldown == 0) {
+      val pos = getPositionVec
+      val direction = new Vec2(mouseX - pos.x, mouseY - pos.y)
+      direction.normalize
+      println("mouse (" + input.getMouseX + "," + input.getMouseY + ")")
+      println("body" + body.getPosition)
+      println("dir" + direction)
+      println("pos" + pos)
+      bullets.append(new Bullet(world, pos, direction.mul(600000)))
+      cooldown = 0
     }
 
   }
@@ -74,11 +76,14 @@ class Player(img: Image, world: World) extends Humanoid {
     body.setLinearVelocity(new Vec2(x, y))
   }
 
-  def update() = {
+  override def update() = {
+    x = body.getPosition.x
+    y = body.getPosition.y
     if (cooldown > 0) cooldown -= 1
     for (bullet <- bullets if bullet.collided)
       world.destroyBody(bullet.body)
     bullets = bullets.filter(!_.collided)
+    bullets.foreach(_.update)
   }
 
   override def render() = {
