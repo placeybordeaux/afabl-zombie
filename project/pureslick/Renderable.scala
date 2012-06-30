@@ -8,6 +8,6 @@ package pureslick
  * To change this template use File | Settings | File Templates.
  */
 
-trait Renderable {
+trait Renderable extends {
   def render
 }

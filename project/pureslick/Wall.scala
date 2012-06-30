@@ -13,7 +13,7 @@ import org.newdawn.slick.Image
  * To change this template use File | Settings | File Templates.
  */
 
-class Wall(world: World, pos: Vec2) extends Renderable {
+class Wall(world: World, pos: Vec2) extends GameObject {
   val image = new Image("data/wall.png")
   val body = createBody(world, pos)
 

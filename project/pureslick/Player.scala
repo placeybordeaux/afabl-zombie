@@ -74,7 +74,7 @@ class Player(img: Image, world: World) extends Humanoid {
     body.setLinearVelocity(new Vec2(x, y))
   }
 
-  def update() = {
+  override def update() = {
     if (cooldown > 0) cooldown -= 1
     for (bullet <- bullets if bullet.collided)
       world.destroyBody(bullet.body)
