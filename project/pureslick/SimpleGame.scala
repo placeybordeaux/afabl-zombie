@@ -18,6 +18,7 @@ object SimpleGame extends BasicGame("Zombie") {
   val b2World = new World(new Vec2(0f, 0f), true)
   var crosshairs: Image = null
   var gameObjects: List[GameObject] = List()
+
   def init(gc: GameContainer) = {
     player = new Player(new Image("data/player.png"), b2World)
     gameObjects ::= new Zombie(b2World)

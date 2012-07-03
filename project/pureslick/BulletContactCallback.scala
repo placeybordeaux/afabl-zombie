@@ -36,9 +36,20 @@ class BulletContactCallback extends ContactListener {
 
   }
 
+  def handleNodes2(nodeA: ContactEdge, nodeB: ContactEdge) = (nodeA.other.getUserData, nodeB.other.getUserData) match {
+    case (bullet: Bullet, humanoid: Humanoid) =>
+      bullet.collide()
+      humanoid.damaged(10)
+    case (bullet: Bullet, _) =>
+      bullet.collide()
+    case (zombie: Zombie, human: Human) =>
+      human.damaged(10)
+    case _ =>
+  }
+
   def preSolve(p1: Contact, p2: Manifold) {
-    handleNodes(p1.m_nodeA, p1.m_nodeB)
-    handleNodes(p1.m_nodeB, p1.m_nodeA)
+    handleNodes2(p1.m_nodeA, p1.m_nodeB)
+    handleNodes2(p1.m_nodeB, p1.m_nodeA)
 
   }
 
