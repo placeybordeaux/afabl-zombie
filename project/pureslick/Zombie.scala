@@ -22,12 +22,20 @@ class Zombie(world: World, x: Float, y: Float) extends Humanoid {
     this(world,100,100)
   }
 
+  def this(world: World, vect: Vec2) = {
+    this(world,vect.x,vect.y)
+  }
+
   override def update(observation: Observation) = {
+    var closest = 9999f
     for (humanoid <- observation.humanoids){
-      if (humanoid.isInstanceOf[Player]){
+      if (humanoid.isInstanceOf[Human]){
         val direction = humanoid.body.getPosition.sub(body.getPosition)
-        direction.normalize()
+        if (direction.length() < closest){
+          closest = direction.length
+          direction.normalize()
         body.setLinearVelocity(direction.mul(speed))
+        }
       }
     }
 

@@ -29,6 +29,11 @@ class BulletContactCallback extends ContactListener {
       humanoid.damaged(10)
     }
 
+    if (nodeB.other.getUserData.isInstanceOf[Human] && nodeA.other.getUserData.isInstanceOf[Zombie]) {
+      val humanoid = nodeB.other.getUserData.asInstanceOf[Human]
+      humanoid.damaged(10)
+    }
+
   }
 
   def preSolve(p1: Contact, p2: Manifold) {

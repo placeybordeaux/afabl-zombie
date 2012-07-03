@@ -1,5 +1,9 @@
 package pureslick
 
+import org.newdawn.slick.Image
+import org.jbox2d.dynamics.World
+import org.jbox2d.common.Vec2
+
 /**
  * Created with IntelliJ IDEA.
  * User: peter
@@ -8,6 +12,6 @@ package pureslick
  * To change this template use File | Settings | File Templates.
  */
 
-class Human  {
-
+trait Human extends Humanoid {
+  var health = 100
 }

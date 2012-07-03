@@ -14,22 +14,21 @@ import collection.mutable.ListBuffer
  * To change this template use File | Settings | File Templates.
  */
 
-class Player(img: Image, world: World) extends Humanoid {
+class Player(img: Image, world: World) extends Human {
   val image = img
   val body = createBody(world)
-  var health = 100
   var bullets = ListBuffer[Bullet]()
   var cooldown = 0
 
   def handleInput(input: Input) = {
     var x, y = 0
-    if (input.isKeyDown(Input.KEY_DOWN))
+    if (input.isKeyDown(Input.KEY_S))
       y += 90
-    if (input.isKeyDown(Input.KEY_UP))
+    if (input.isKeyDown(Input.KEY_W))
       y -= 90
-    if (input.isKeyDown(Input.KEY_LEFT))
+    if (input.isKeyDown(Input.KEY_A))
       x -= 90
-    if (input.isKeyDown(Input.KEY_RIGHT))
+    if (input.isKeyDown(Input.KEY_D))
       x += 90
     if (input.isMouseButtonDown(0)) {
       fireBullet(input)
