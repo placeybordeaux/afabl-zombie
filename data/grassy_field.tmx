@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="Grass Block" tilewidth="16" tileheight="16">
+  <image source="PlanetCute PNG/Grass Block.png" width="101" height="171"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3Vt3FDURDAwN8D5T1Fytv+q9PNqIiHYAMk2wB227adTKfT2XQ+XUw7vsQvp6vperqZbqc7vszvp4dpPz1Oh+nIl/nT9Dy9TK/T2/TOl/nH9Dl9Td/Tz/TLl3nlY9zPi175GPfzolc+xv286JWPcT8veuVj3M+LXvkY9/OiVz7G/bzolY9xPy965WPcz4te+Rj386JXPsb9vOiVj3E/L3rlY9zPi175GPfzolc+xv286JWPcT8veuVj3M+LXvkY9/OiVz7G/bzolY9xPy965WPcz4te+Rj386JXPsb9vOiVj3E/L3rlY9zPi175GPfzolc+xv286JWPcT8veuVj3M+LXvkY9/OiVz7G/bzolY9xPy965WPcz4te+Rj386JXPsb9vOiVj3E/L3rlY9zPi175GPfzolc+xv286JWPcT8veuVj3M+LXvkY9/OiVz7G/bzolY9xPy965WPcz4te+Rj386JXPsb9vOiVj/F//wM3w+rOQJwAAA==
+  </data>
+ </layer>
+</map>

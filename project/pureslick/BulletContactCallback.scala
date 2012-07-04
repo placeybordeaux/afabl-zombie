@@ -18,25 +18,7 @@ class BulletContactCallback extends ContactListener {
 
   def endContact(p1: Contact) {}
 
-  def handleNodes(nodeA: ContactEdge, nodeB: ContactEdge) = {
-
-    if (nodeA.other.getUserData.isInstanceOf[Bullet]) {
-      val bullet = nodeA.other.getUserData.asInstanceOf[Bullet]
-      bullet.collide()
-    }
-    if (nodeB.other.getUserData.isInstanceOf[Humanoid] && nodeA.other.getUserData.isInstanceOf[Bullet]) {
-      val humanoid = nodeB.other.getUserData.asInstanceOf[Humanoid]
-      humanoid.damaged(10)
-    }
-
-    if (nodeB.other.getUserData.isInstanceOf[Human] && nodeA.other.getUserData.isInstanceOf[Zombie]) {
-      val humanoid = nodeB.other.getUserData.asInstanceOf[Human]
-      humanoid.damaged(10)
-    }
-
-  }
-
-  def handleNodes2(nodeA: ContactEdge, nodeB: ContactEdge) = (nodeA.other.getUserData, nodeB.other.getUserData) match {
+  def handleNodes(nodeA: ContactEdge, nodeB: ContactEdge) = (nodeA.other.getUserData, nodeB.other.getUserData) match {
     case (bullet: Bullet, humanoid: Humanoid) =>
       bullet.collide()
       humanoid.damaged(10)
@@ -48,8 +30,8 @@ class BulletContactCallback extends ContactListener {
   }
 
   def preSolve(p1: Contact, p2: Manifold) {
-    handleNodes2(p1.m_nodeA, p1.m_nodeB)
-    handleNodes2(p1.m_nodeB, p1.m_nodeA)
+    handleNodes(p1.m_nodeA, p1.m_nodeB)
+    handleNodes(p1.m_nodeB, p1.m_nodeA)
 
   }
 

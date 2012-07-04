@@ -50,7 +50,7 @@ class Bullet(world: World, pos: Vec2, velc: Vec2) extends Renderable {
   }
 
   def render() = {
-    image.draw(body.getPosition.x, body.getPosition.y)
+    image.draw(body.getPosition.x - image.getWidth/2, body.getPosition.y - image.getHeight/2)
   }
 
   def update = {

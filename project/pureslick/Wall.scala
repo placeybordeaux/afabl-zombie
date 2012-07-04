@@ -19,6 +19,9 @@ class Wall(world: World, pos: Vec2) extends GameObject {
   var x = body.getPosition.x
   var y = body.getPosition.y
 
+  def this(world: World, x: Float, y: Float) = {
+    this(world,new Vec2(x,y))
+  }
   def createBody(world: World, pos: Vec2) = {
     val bodyDef = new BodyDef()
     bodyDef.`type` = BodyType.STATIC
@@ -48,6 +51,6 @@ class Wall(world: World, pos: Vec2) extends GameObject {
   }
 
   def render() = {
-    image.draw(body.getPosition.x, body.getPosition.y)
+    image.draw(body.getPosition.x - image.getWidth/2, body.getPosition.y - image.getHeight/2)
   }
 }

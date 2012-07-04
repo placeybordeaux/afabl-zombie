@@ -18,8 +18,20 @@ object SimpleGame extends BasicGame("Zombie") {
   val b2World = new World(new Vec2(0f, 0f), true)
   var crosshairs: Image = null
   var gameObjects: List[GameObject] = List()
+  var background: List[Grass] = List()
 
   def init(gc: GameContainer) = {
+    background ::= new Grass(0,0)
+    background ::= new Grass(0,80)
+    background ::= new Grass(100,0)
+    background ::= new Grass(100,80)
+
+    gameObjects ::= new Wall(b2World,0,-210)
+    gameObjects ::= new Wall(b2World,-100,-80)
+
+    gameObjects ::= new Wall(b2World,-100,-160)
+    gameObjects ::= new Wall(b2World,-100,-240)
+    background = background.sortWith(_.y < _.y)
     player = new Player(new Image("data/player.png"), b2World)
     gameObjects ::= new Zombie(b2World)
     gameObjects ::= new Zombie(b2World, 200, 200)
@@ -60,6 +72,7 @@ object SimpleGame extends BasicGame("Zombie") {
     val x = player.body.getPosition.x.toInt
     val y = player.body.getPosition.y.toInt
     g.translate(400 - player.body.getPosition.x, 300 - player.body.getPosition.y)
+    background.foreach(_.render)
 
 
 
