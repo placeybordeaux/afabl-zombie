@@ -54,9 +54,15 @@ object SimpleGame extends BasicGame("Zombie") {
   def update(gc: GameContainer, delta: Int) = {
     for(garbage <- gameObjects.filter(_.isGarbage)){
       if (garbage.isInstanceOf[Human]){
-        gameObjects ::= new Zombie(b2World, garbage.body.getPosition)
+        garbage match {
+          case human: Human =>
+            gameObjects ::= new Zombie(b2World, human.body.getPosition)
+            b2World.destroyBody(garbage.body)
+            if (human.ammo>0) new Clip(b2World, human.body.getPosition,human.ammo)
+          case _ =>
+            b2World.destroyBody(garbage.body)
+        }
       }
-      b2World.destroyBody(garbage.body)
     }
     gameObjects = gameObjects.filterNot(_.isGarbage)
     //TODO make this look better

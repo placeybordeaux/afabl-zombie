@@ -14,8 +14,9 @@ import collection.mutable.ListBuffer
  * To change this template use File | Settings | File Templates.
  */
 
-class Player(img: Image, world: World) extends Human {
+class Player(img: Image, b2World: World) extends Human {
   var image = img
+  val world = b2World
   val body = createBody(world)
   ammo = 10
 

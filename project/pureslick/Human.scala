@@ -18,6 +18,7 @@ trait Human extends Humanoid {
   var ammo = 0
   var cooldown = 0
   var bullets = ListBuffer[Bullet]()
+  val world: World
 
 
   def fireBullet(mouseX: Int, mouseY: Int) = {
@@ -37,10 +38,6 @@ trait Human extends Humanoid {
       val pos = getPositionVec
       val direction = new Vec2(mouseX - pos.x, mouseY - pos.y)
       direction.normalize
-      println("mouse (" + mouseX + "," + mouseY + ")")
-      println("body" + body.getPosition)
-      println("dir" + direction)
-      println("pos" + pos)
       bullets.append(new Bullet(world, pos, direction.mul(600000)))
       cooldown = 30
       ammo -= 1

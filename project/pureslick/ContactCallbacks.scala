@@ -27,8 +27,10 @@ class ContactCallbacks extends ContactListener {
     case (zombie: Zombie, human: Human) =>
       human.damaged(10)
     case (clip: Clip, human: Human) =>
+      if (!clip.isGarbage){
       human.ammo += clip.ammo
       clip.isGarbage = true
+  }
 
     case _ =>
   }
