@@ -20,7 +20,9 @@ trait Human extends Humanoid {
   var bullets = ListBuffer[Bullet]()
   val world: World
 
-
+  def fireBullet(vec: Vec2): Unit = {
+    fireBullet(vec.x.toInt,vec.y.toInt)
+  }
   def fireBullet(mouseX: Int, mouseY: Int) = {
     def getPositionVec(): Vec2 = {
       var posx, posy = 0f

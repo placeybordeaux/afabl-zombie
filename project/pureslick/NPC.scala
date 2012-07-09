@@ -20,7 +20,6 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
   val speed = 4
 
   override def update(observation: Observation) = {
-    def handleDirection() = {
       var closest = 9999f
       val farthest = 30f
       //this is for random wandering behavior when they are out of range of a human
@@ -43,9 +42,6 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
 
       direction.normalize()
       body.setLinearVelocity(direction.mul(speed))
-    }
-    def handleFighting() = {}
-    handleDirection
-    handleFighting
+      //fireBullet(direction.negate())
   }
 }

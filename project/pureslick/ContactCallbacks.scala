@@ -18,14 +18,17 @@ class ContactCallbacks extends ContactListener {
 
   def endContact(p1: Contact) {}
 
-  def handleNodes(nodeA: ContactEdge, nodeB: ContactEdge) = (nodeA.other.getUserData, nodeB.other.getUserData) match {
+  def handleNodes(nodeA: ContactEdge, nodeB: ContactEdge) = {
+   (nodeA.other.getUserData, nodeB.other.getUserData) match {
     case (bullet: Bullet, humanoid: Humanoid) =>
       bullet.collide()
       humanoid.damaged(10)
     case (bullet: Bullet, _) =>
       bullet.collide()
     case (zombie: Zombie, human: Human) =>
+      if (!zombie.isGarbage){
       human.damaged(10)
+      }
     case (clip: Clip, human: Human) =>
       if (!clip.isGarbage){
       human.ammo += clip.ammo
@@ -33,6 +36,8 @@ class ContactCallbacks extends ContactListener {
   }
 
     case _ =>
+
+   }
   }
 
   def preSolve(p1: Contact, p2: Manifold) {

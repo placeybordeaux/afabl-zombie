@@ -82,7 +82,7 @@ object SimpleGame extends BasicGame("Zombie") {
           gameObjects ::= new Clip(b2World,x*10,y*8)
         if (Random.nextFloat() > .8)
           gameObjects ::= new NPC(b2World,x*10,y*8)
-        if (Random.nextFloat() > .95)
+        if (Random.nextFloat() > .97)
           gameObjects ::= new Zombie(b2World,x*10,y*8)
         }      }
     }
