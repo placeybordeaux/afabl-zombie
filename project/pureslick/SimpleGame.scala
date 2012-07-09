@@ -4,6 +4,7 @@ import org.newdawn.slick.{Image, AppGameContainer, BasicGame, GameContainer}
 import org.jbox2d.dynamics.World
 import org.jbox2d.common.Vec2
 import org.newdawn.slick.tiled.TiledMap
+import util.Random
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,11 +22,7 @@ object SimpleGame extends BasicGame("Zombie") {
   var background: List[Grass] = List()
 
   def init(gc: GameContainer) = {
-    //background ::= new Grass(0,0)
-    //background ::= new Grass(0,80)
-    //background ::= new Grass(100,0)
-    //background ::= new Grass(100,80)
-
+    createLevel()
     //gameObjects ::= new Wall(b2World,0,-210)
     //gameObjects ::= new Wall(b2World,-100,-80)
 
@@ -74,6 +71,35 @@ object SimpleGame extends BasicGame("Zombie") {
     b2World.step(1 / 60f, 6, 2)
   }
 
+  def createLevel() = {
+    for(x <- 0 to 10){
+      for (y <- 0 to 10){
+        background ::= new Grass(x*100,y*80)
+        if (y < 10){
+        if (Random.nextFloat() > .9)
+          gameObjects ::= new Wall(b2World,x*10,y*8)
+        if (Random.nextFloat() > .8)
+          gameObjects ::= new Clip(b2World,x*10,y*8)
+        if (Random.nextFloat() > .8)
+          gameObjects ::= new NPC(b2World,x*10,y*8)
+        if (Random.nextFloat() > .95)
+          gameObjects ::= new Zombie(b2World,x*10,y*8)
+        }      }
+    }
+    //left and right walls
+    for (y <- -1 to 10){
+      gameObjects ::= new Wall(b2World,-10,y*8)
+      gameObjects ::= new Wall(b2World,110,y*8)
+    }
+    //top and bottom walls
+
+    for (x <- -1 to 10){
+      gameObjects ::= new Wall(b2World,x*10,-16)
+      gameObjects ::= new Wall(b2World,x*10,80)
+    }
+
+  }
+
   def render(gc: GameContainer, g: org.newdawn.slick.Graphics) = {
 
     val x = player.body.getPosition.x.toInt
@@ -86,7 +112,7 @@ object SimpleGame extends BasicGame("Zombie") {
 
     gameObjects = gameObjects.sortWith(_.body.getPosition.y < _.body.getPosition.y)
     gameObjects.foreach(_.render)
-    b2World.drawDebugData()
+    //b2World.drawDebugData()
     g.translate(-400 + player.body.getPosition.x*10, -300 + player.body.getPosition.y*10)
 
     g.drawString("Ammo:" + player.ammo.toString,0,0)
