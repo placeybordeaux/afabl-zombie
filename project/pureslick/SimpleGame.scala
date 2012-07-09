@@ -21,28 +21,29 @@ object SimpleGame extends BasicGame("Zombie") {
   var background: List[Grass] = List()
 
   def init(gc: GameContainer) = {
-    background ::= new Grass(0,0)
-    background ::= new Grass(0,80)
-    background ::= new Grass(100,0)
-    background ::= new Grass(100,80)
+    //background ::= new Grass(0,0)
+    //background ::= new Grass(0,80)
+    //background ::= new Grass(100,0)
+    //background ::= new Grass(100,80)
 
-    gameObjects ::= new Wall(b2World,0,-210)
-    gameObjects ::= new Wall(b2World,-100,-80)
+    //gameObjects ::= new Wall(b2World,0,-210)
+    //gameObjects ::= new Wall(b2World,-100,-80)
 
+    gameObjects ::= new Clip(b2World,10,0)
     gameObjects ::= new Wall(b2World,-100,-160)
     gameObjects ::= new Wall(b2World,-100,-240)
     background = background.sortWith(_.y < _.y)
     player = new Player(new Image("data/player.png"), b2World)
-    gameObjects ::= new Zombie(b2World)
-    gameObjects ::= new Zombie(b2World, 200, 200)
+    //gameObjects ::= new Zombie(b2World)
+    gameObjects ::= new Zombie(b2World, 20, 20)
     //gameObjects ::= new Wall(b2World, new Vec2(30f, 30f))
     gameObjects ::= player
-    gameObjects ::= new NPC(b2World, 50,100)
+    //gameObjects ::= new NPC(b2World, 5,10)
 
-    gameObjects ::= new NPC(b2World, 100,50)
+    //gameObjects ::= new NPC(b2World, 10,5)
     gc.setMouseCursor(new Image("data/crosshairs.png"), 20, 20)
 
-    b2World.setContactListener(new BulletContactCallback)
+    b2World.setContactListener(new ContactCallbacks)
     //debug draw
     val sDD = new Slick2dDebugDraw(gc.getGraphics,gc)
     sDD.setFlags(0x0001)
@@ -71,13 +72,18 @@ object SimpleGame extends BasicGame("Zombie") {
 
     val x = player.body.getPosition.x.toInt
     val y = player.body.getPosition.y.toInt
-    g.translate(400 - player.body.getPosition.x, 300 - player.body.getPosition.y)
+    g.translate(400 - player.body.getPosition.x*10, 300 - player.body.getPosition.y*10)
+    //g.scale(1/10f,1/10f)
     background.foreach(_.render)
 
 
 
     gameObjects = gameObjects.sortWith(_.body.getPosition.y < _.body.getPosition.y)
     gameObjects.foreach(_.render)
+    b2World.drawDebugData()
+    g.translate(-400 + player.body.getPosition.x*10, -300 + player.body.getPosition.y*10)
+
+    g.drawString("Ammo:" + player.ammo.toString,0,0)
   }
 
   def main(args: Array[String]) = {

@@ -14,8 +14,6 @@ import org.newdawn.slick.Image
  */
 
 trait Humanoid extends GameObject {
-  val image: Image
-  val body: Body
   var health: Int
 
   def die = {
@@ -37,7 +35,7 @@ trait Humanoid extends GameObject {
     bodyDef.position = pos
 
     val bodyShape = new PolygonShape()
-    bodyShape.setAsBox(40 / 2, 60 / 2)
+    bodyShape.setAsBox(40 / 20, 60 / 20)
     val bodyFixture = new FixtureDef()
     bodyFixture.shape = bodyShape
     bodyFixture.filter.categoryBits = 0x0002
@@ -45,7 +43,7 @@ trait Humanoid extends GameObject {
     bodyFixture.filter.groupIndex = -1
 
     val footShape = new PolygonShape()
-    footShape.setAsBox(40 / 2, 20 / 2, new Vec2(0, 40 / 2), 0f)
+    footShape.setAsBox(40 / 20, 20 / 20, new Vec2(0, 40 / 20), 0f)
     val footFixture = new FixtureDef()
     footFixture.shape = footShape
     footFixture.filter.categoryBits = 0x0001
@@ -58,11 +56,5 @@ trait Humanoid extends GameObject {
     body.setUserData(this)
     body
   }
-
-
-  def render() = {
-    image.draw(body.getPosition.x - image.getWidth / 2, body.getPosition.y - image.getHeight / 2)
-  }
-
 
 }

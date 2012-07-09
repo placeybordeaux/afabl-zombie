@@ -34,7 +34,7 @@ class Bullet(world: World, pos: Vec2, velc: Vec2) extends Renderable {
     bodyDef.bullet = true
 
     val bodyShape = new PolygonShape()
-    bodyShape.setAsBox(10 / 2, 10 / 2)
+    bodyShape.setAsBox(10 / 20f, 10 / 20f)
     val bodyFixture = new FixtureDef()
     bodyFixture.shape = bodyShape
     bodyFixture.density = 0.00005f
@@ -50,7 +50,7 @@ class Bullet(world: World, pos: Vec2, velc: Vec2) extends Renderable {
   }
 
   def render() = {
-    image.draw(body.getPosition.x - image.getWidth/2, body.getPosition.y - image.getHeight/2)
+    image.draw((body.getPosition.x - image.getWidth/20)*10, (body.getPosition.y - image.getHeight/20)*10)
   }
 
   def update = {

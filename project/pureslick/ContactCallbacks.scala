@@ -12,7 +12,7 @@ import org.jbox2d.collision.Manifold
  * To change this template use File | Settings | File Templates.
  */
 
-class BulletContactCallback extends ContactListener {
+class ContactCallbacks extends ContactListener {
   def beginContact(p1: Contact) {
   }
 
@@ -26,6 +26,10 @@ class BulletContactCallback extends ContactListener {
       bullet.collide()
     case (zombie: Zombie, human: Human) =>
       human.damaged(10)
+    case (clip: Clip, human: Human) =>
+      human.ammo += clip.ammo
+      clip.isGarbage = true
+
     case _ =>
   }
 

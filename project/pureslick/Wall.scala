@@ -14,7 +14,7 @@ import org.newdawn.slick.Image
  */
 
 class Wall(world: World, pos: Vec2) extends GameObject {
-  val image = new Image("data/wall.png")
+  var image = new Image("data/wall.png")
   val body = createBody(world, pos)
   var x = body.getPosition.x
   var y = body.getPosition.y
@@ -28,7 +28,7 @@ class Wall(world: World, pos: Vec2) extends GameObject {
     bodyDef.position = pos
 
     val bodyShape = new PolygonShape()
-    bodyShape.setAsBox(image.getWidth / 2, image.getHeight / 2)
+    bodyShape.setAsBox(image.getWidth / 20, image.getHeight / 20)
     val bodyFixture = new FixtureDef()
     bodyFixture.shape = bodyShape
     bodyFixture.filter.categoryBits = 0x0002
@@ -36,7 +36,7 @@ class Wall(world: World, pos: Vec2) extends GameObject {
     bodyFixture.filter.groupIndex = -1
 
     val footShape = new PolygonShape()
-    footShape.setAsBox(image.getWidth / 2, image.getHeight * 3 / 4 / 2, new Vec2(0, image.getHeight / 4 / 2), 0f)
+    footShape.setAsBox(image.getWidth / 20, image.getHeight * 3 / 4 / 20, new Vec2(0, image.getHeight / 4 / 20), 0f)
     val footFixture = new FixtureDef()
     footFixture.shape = footShape
     footFixture.filter.categoryBits = 0x0001
@@ -48,9 +48,5 @@ class Wall(world: World, pos: Vec2) extends GameObject {
     body.createFixture(footFixture)
     body.setUserData(this)
     body
-  }
-
-  def render() = {
-    image.draw(body.getPosition.x - image.getWidth/2, body.getPosition.y - image.getHeight/2)
   }
 }
