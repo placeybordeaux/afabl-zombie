@@ -15,8 +15,9 @@ import org.newdawn.slick.Image
 
 class Bullet(world: World, pos: Vec2, velc: Vec2) extends Renderable {
 
-  val body = createBody(world, pos, velc)
   val image = new Image("data/bullet.png")
+  val body = createBody(world, pos, velc)
+
   var collided = false
   var x = pos.x
   var y = pos.y
@@ -34,7 +35,7 @@ class Bullet(world: World, pos: Vec2, velc: Vec2) extends Renderable {
     bodyDef.bullet = true
 
     val bodyShape = new PolygonShape()
-    bodyShape.setAsBox(10 / 20f, 10 / 20f)
+    bodyShape.setAsBox(image.getWidth / 20f, image.getHeight / 20f)
     val bodyFixture = new FixtureDef()
     bodyFixture.shape = bodyShape
     bodyFixture.density = 0.00005f

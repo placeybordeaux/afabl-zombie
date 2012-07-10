@@ -21,8 +21,10 @@ class ContactCallbacks extends ContactListener {
   def handleNodes(nodeA: ContactEdge, nodeB: ContactEdge) = {
    (nodeA.other.getUserData, nodeB.other.getUserData) match {
     case (bullet: Bullet, humanoid: Humanoid) =>
+      if (!humanoid.isGarbage){
       bullet.collide()
       humanoid.damaged(10)
+      }
     case (bullet: Bullet, _) =>
       bullet.collide()
     case (zombie: Zombie, human: Human) =>

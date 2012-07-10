@@ -18,6 +18,10 @@ class Clip(world: World, pos: Vec2, amount: Int) extends GameObject {
   val body = createBody(world,pos)
   val ammo = amount
 
+  override def update() = {
+    body.setLinearVelocity(body.getLinearVelocity.mul(0.7f))
+  }
+
   def this(world: World, x: Float, y: Float, amount: Int) = {
     this(world, new Vec2(x,y), amount)
   }

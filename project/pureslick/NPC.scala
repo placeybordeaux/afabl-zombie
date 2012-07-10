@@ -17,7 +17,6 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
   var image = new Image("data/player.png")
   val world = b2World
   val body = createBody(world, new Vec2(x, y))
-  val speed = 4
 
   override def update(observation: Observation) = {
       var closest = 9999f

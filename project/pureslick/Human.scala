@@ -19,6 +19,7 @@ trait Human extends Humanoid {
   var cooldown = 0
   var bullets = ListBuffer[Bullet]()
   val world: World
+  var speed = 14
 
   def fireBullet(vec: Vec2): Unit = {
     fireBullet(vec.x.toInt,vec.y.toInt)
@@ -44,7 +45,6 @@ trait Human extends Humanoid {
       cooldown = 30
       ammo -= 1
     }
-
   }
 
   override def render() = {

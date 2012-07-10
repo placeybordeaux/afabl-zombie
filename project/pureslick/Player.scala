@@ -23,13 +23,13 @@ class Player(img: Image, b2World: World) extends Human {
   def handleInput(input: Input) = {
     var x, y = 0
     if (input.isKeyDown(Input.KEY_S))
-      y += 9
+      y += speed
     if (input.isKeyDown(Input.KEY_W))
-      y -= 9
+      y -= speed
     if (input.isKeyDown(Input.KEY_A))
-      x -= 9
+      x -= speed
     if (input.isKeyDown(Input.KEY_D))
-      x += 9
+      x += speed
     if (input.isMouseButtonDown(0)) {
       fireBullet(input.getMouseX - 400,input.getMouseY - 300)
     }

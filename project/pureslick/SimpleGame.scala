@@ -23,21 +23,10 @@ object SimpleGame extends BasicGame("Zombie") {
 
   def init(gc: GameContainer) = {
     createLevel()
-    //gameObjects ::= new Wall(b2World,0,-210)
-    //gameObjects ::= new Wall(b2World,-100,-80)
 
-    gameObjects ::= new Clip(b2World,10,0)
-    gameObjects ::= new Wall(b2World,-100,-160)
-    gameObjects ::= new Wall(b2World,-100,-240)
     background = background.sortWith(_.y < _.y)
     player = new Player(new Image("data/player.png"), b2World)
-    //gameObjects ::= new Zombie(b2World)
-    gameObjects ::= new Zombie(b2World, 20, 20)
-    //gameObjects ::= new Wall(b2World, new Vec2(30f, 30f))
     gameObjects ::= player
-    //gameObjects ::= new NPC(b2World, 5,10)
-
-    //gameObjects ::= new NPC(b2World, 10,5)
     gc.setMouseCursor(new Image("data/crosshairs.png"), 20, 20)
 
     b2World.setContactListener(new ContactCallbacks)
@@ -56,6 +45,9 @@ object SimpleGame extends BasicGame("Zombie") {
             gameObjects ::= new Zombie(b2World, human.body.getPosition)
             b2World.destroyBody(garbage.body)
             if (human.ammo>0) new Clip(b2World, human.body.getPosition,human.ammo)
+          case zombie: Zombie =>
+            zombie.body.setActive(false)
+            b2World.destroyBody(zombie.body)
           case _ =>
             b2World.destroyBody(garbage.body)
         }
