@@ -17,7 +17,7 @@ class Zombie(world: World, x: Float, y: Float) extends Humanoid {
   var image = new Image("data/zombie.png")
   val body = createBody(world, new Vec2(x, y))
   var health = 150
-  val speed = 3
+  val speed = 6
 
   def this(world: World) = {
     this(world,100,100)

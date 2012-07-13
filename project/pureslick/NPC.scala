@@ -19,8 +19,10 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
   val body = createBody(world, new Vec2(x, y))
 
   override def update(observation: Observation) = {
+      super.update()
       var closest = 9999f
       val farthest = 30f
+      var zombieNearby = false
       //this is for random wandering behavior when they are out of range of a human
 
       var direction = body.getLinearVelocity
@@ -35,11 +37,20 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
           if (newDirection.length() < closest && newDirection.length() < farthest) {
             closest = newDirection.length
             direction = newDirection
+            zombieNearby = true
           }
         }
       }
+    if (zombieNearby){
+    println(body.getPosition)
+    println(direction)
+    fireBullet(direction.add(new Vec2(image.getWidth/10,image.getHeight/10).mul(-3.0f)))
+    }
 
-      direction.normalize()
+
+
+    direction.normalize()
+
       body.setLinearVelocity(direction.mul(speed))
       //fireBullet(direction.negate())
   }

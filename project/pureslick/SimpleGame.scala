@@ -27,6 +27,7 @@ object SimpleGame extends BasicGame("Zombie") {
     background = background.sortWith(_.y < _.y)
     player = new Player(new Image("data/player.png"), b2World)
     gameObjects ::= player
+
     gc.setMouseCursor(new Image("data/crosshairs.png"), 20, 20)
 
     b2World.setContactListener(new ContactCallbacks)
@@ -36,6 +37,33 @@ object SimpleGame extends BasicGame("Zombie") {
     b2World.setDebugDraw(sDD)
   }
 
+  def createLevel() = {
+    for(x <- 0 to 10){
+      for (y <- 0 to 10){
+        background ::= new Grass(x*100,y*80)
+        if (y < 10){
+          if (Random.nextFloat() > .9)
+            gameObjects ::= new Wall(b2World,x*10,y*8)
+          if (Random.nextFloat() > .8)
+            gameObjects ::= new Clip(b2World,x*10,y*8)
+          if (Random.nextFloat() > .8)
+            gameObjects ::= new NPC(b2World,x*10,y*8)
+          if (Random.nextFloat() > .97)
+            gameObjects ::= new Zombie(b2World,x*10,y*8)
+        }      }
+    }
+    //left and right walls
+    for (y <- -1 to 10){
+      gameObjects ::= new Wall(b2World,-10,y*8)
+      gameObjects ::= new Wall(b2World,110,y*8)
+    }
+    //top and bottom walls
+    for (x <- -1 to 10){
+      gameObjects ::= new Wall(b2World,x*10,-16)
+      gameObjects ::= new Wall(b2World,x*10,80)
+    }
+
+  }
 
   def update(gc: GameContainer, delta: Int) = {
     for(garbage <- gameObjects.filter(_.isGarbage)){
@@ -63,50 +91,13 @@ object SimpleGame extends BasicGame("Zombie") {
     b2World.step(1 / 60f, 6, 2)
   }
 
-  def createLevel() = {
-    for(x <- 0 to 10){
-      for (y <- 0 to 10){
-        background ::= new Grass(x*100,y*80)
-        if (y < 10){
-        if (Random.nextFloat() > .9)
-          gameObjects ::= new Wall(b2World,x*10,y*8)
-        if (Random.nextFloat() > .8)
-          gameObjects ::= new Clip(b2World,x*10,y*8)
-        if (Random.nextFloat() > .8)
-          gameObjects ::= new NPC(b2World,x*10,y*8)
-        if (Random.nextFloat() > .97)
-          gameObjects ::= new Zombie(b2World,x*10,y*8)
-        }      }
-    }
-    //left and right walls
-    for (y <- -1 to 10){
-      gameObjects ::= new Wall(b2World,-10,y*8)
-      gameObjects ::= new Wall(b2World,110,y*8)
-    }
-    //top and bottom walls
-
-    for (x <- -1 to 10){
-      gameObjects ::= new Wall(b2World,x*10,-16)
-      gameObjects ::= new Wall(b2World,x*10,80)
-    }
-
-  }
-
   def render(gc: GameContainer, g: org.newdawn.slick.Graphics) = {
-
-    val x = player.body.getPosition.x.toInt
-    val y = player.body.getPosition.y.toInt
     g.translate(400 - player.body.getPosition.x*10, 300 - player.body.getPosition.y*10)
-    //g.scale(1/10f,1/10f)
     background.foreach(_.render)
-
-
-
     gameObjects = gameObjects.sortWith(_.body.getPosition.y < _.body.getPosition.y)
     gameObjects.foreach(_.render)
     //b2World.drawDebugData()
     g.translate(-400 + player.body.getPosition.x*10, -300 + player.body.getPosition.y*10)
-
     g.drawString("Ammo:" + player.ammo.toString,0,0)
   }
 

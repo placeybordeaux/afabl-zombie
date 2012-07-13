@@ -19,12 +19,13 @@ trait Human extends Humanoid {
   var cooldown = 0
   var bullets = ListBuffer[Bullet]()
   val world: World
-  var speed = 14
+  var speed = 17
 
   def fireBullet(vec: Vec2): Unit = {
     fireBullet(vec.x.toInt,vec.y.toInt)
   }
-  def fireBullet(mouseX: Int, mouseY: Int) = {
+  def fireBullet(mouseX: Float, mouseY: Float) = {
+    if (!(mouseY == mouseX && mouseY == 0)){
     def getPositionVec(): Vec2 = {
       var posx, posy = 0f
       if (math.abs(mouseX) >= math.abs(mouseY)){
@@ -45,6 +46,7 @@ trait Human extends Humanoid {
       cooldown = 30
       ammo -= 1
     }
+  }
   }
 
   override def render() = {

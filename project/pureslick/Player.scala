@@ -18,7 +18,7 @@ class Player(img: Image, b2World: World) extends Human {
   var image = img
   val world = b2World
   val body = createBody(world)
-  ammo = 10
+  ammo = 50
 
   def handleInput(input: Input) = {
     var x, y = 0
@@ -31,7 +31,7 @@ class Player(img: Image, b2World: World) extends Human {
     if (input.isKeyDown(Input.KEY_D))
       x += speed
     if (input.isMouseButtonDown(0)) {
-      fireBullet(input.getMouseX - 400,input.getMouseY - 300)
+      fireBullet(-5 + input.getMouseX - 400 + body.getPosition.x,-30 + input.getMouseY - 300 + body.getPosition.y)
     }
     walk(x, y)
   }

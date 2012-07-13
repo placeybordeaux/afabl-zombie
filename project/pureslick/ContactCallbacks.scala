@@ -23,7 +23,7 @@ class ContactCallbacks extends ContactListener {
     case (bullet: Bullet, humanoid: Humanoid) =>
       if (!humanoid.isGarbage){
       bullet.collide()
-      humanoid.damaged(10)
+      humanoid.damaged(20)
       }
     case (bullet: Bullet, _) =>
       bullet.collide()
