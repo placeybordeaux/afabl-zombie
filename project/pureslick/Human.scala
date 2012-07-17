@@ -23,7 +23,7 @@ trait Human extends Humanoid {
 
   override def damaged(amount: Int) = {
     super.damaged(amount)
-    image = new Image("data/player" + (1 + (health*4)/100).toString + ".png")
+    image = new Image("data/player" + (1 + ((math.max(health,0)*4)/100)).toString + ".png")
   }
 
   def fireBullet(vec: Vec2): Unit = {
@@ -44,8 +44,7 @@ trait Human extends Humanoid {
       new Vec2(posx, posy)
     }
     val callback = new tracingCallback()
-    world.raycast(callback,getPositionVec,vec)
-    println(callback.gameObject)
+    world.raycast(callback,vec,getPositionVec)
     callback.gameObject
   }
 

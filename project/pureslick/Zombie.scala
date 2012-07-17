@@ -35,7 +35,7 @@ class Zombie(world: World, x: Float, y: Float) extends Humanoid {
     direction = direction.add(new Vec2(Random.nextFloat/2 - .25f,Random.nextFloat/2 - .25f))
     //end wandering behavior
     var closest = 9999f
-    val farthest = 20
+    val farthest = 40
     for (humanoid <- observation.humanoids){
       if (humanoid.isInstanceOf[Human]){
         val newDirection = humanoid.body.getPosition.sub(body.getPosition)

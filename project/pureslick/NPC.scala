@@ -23,6 +23,7 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
       var closest = 9999f
       val farthest = 30f
       var zombieNearby = false
+      var fireDirection: Vec2 = null
       //this is for random wandering behavior when they are out of range of a human
 
       var direction = body.getLinearVelocity
@@ -35,13 +36,15 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
           val newDirection = body.getPosition.sub(humanoid.body.getPosition.add(new Vec2(image.getWidth/20,image.getHeight/20)))
           if (newDirection.length() < closest && newDirection.length() < farthest) {
             closest = newDirection.length
-            direction = newDirection
+            fireDirection = newDirection
+            direction = direction.add(newDirection)
             zombieNearby = true
           }
         }
       }
-    if (zombieNearby && !trace_path(direction.mul(-3.0f)).isInstanceOf[Human]){
-      fireBullet((direction.mul(-3.0f)))
+    if (zombieNearby && trace_path(direction.mul(-1.0f)).isInstanceOf[Zombie] && cooldown > 0 && ammo > 0){
+      println("fired!")
+      fireBullet((fireDirection.mul(-3.0f)))
     }
 
 
