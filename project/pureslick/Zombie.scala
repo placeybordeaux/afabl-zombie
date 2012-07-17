@@ -17,7 +17,7 @@ class Zombie(world: World, x: Float, y: Float) extends Humanoid {
   var image = new Image("data/zombie.png")
   val body = createBody(world, new Vec2(x, y))
   var health = 150
-  val speed = 6
+  val speed = 7
 
   def this(world: World) = {
     this(world,100,100)
@@ -28,6 +28,7 @@ class Zombie(world: World, x: Float, y: Float) extends Humanoid {
   }
 
   override def update(observation: Observation) = {
+    super.update()
     //this is for random wandering behavior when they are out of range of a human
     var direction = body.getLinearVelocity
     direction.normalize

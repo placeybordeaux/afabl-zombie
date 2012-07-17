@@ -30,10 +30,9 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
       direction = direction.add(new Vec2(Random.nextFloat / 2 - .25f, Random.nextFloat / 2 - .25f))
       //end wandering behavior
 
-
       for (humanoid <- observation.humanoids) {
         if (humanoid.isInstanceOf[Zombie]) {
-          val newDirection = body.getPosition.sub(humanoid.body.getPosition)
+          val newDirection = body.getPosition.sub(humanoid.body.getPosition.add(new Vec2(image.getWidth/20,image.getHeight/20)))
           if (newDirection.length() < closest && newDirection.length() < farthest) {
             closest = newDirection.length
             direction = newDirection
@@ -41,10 +40,8 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
           }
         }
       }
-    if (zombieNearby){
-    println(body.getPosition)
-    println(direction)
-    fireBullet(direction.add(new Vec2(image.getWidth/10,image.getHeight/10).mul(-3.0f)))
+    if (zombieNearby && !trace_path(direction.mul(-3.0f)).isInstanceOf[Human]){
+      fireBullet((direction.mul(-3.0f)))
     }
 
 

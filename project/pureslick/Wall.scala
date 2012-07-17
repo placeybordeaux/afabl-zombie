@@ -27,24 +27,15 @@ class Wall(world: World, pos: Vec2) extends GameObject {
     bodyDef.`type` = BodyType.STATIC
     bodyDef.position = pos
 
-    val bodyShape = new PolygonShape()
-    bodyShape.setAsBox(image.getWidth / 20, image.getHeight / 20)
-    val bodyFixture = new FixtureDef()
-    bodyFixture.shape = bodyShape
-    bodyFixture.filter.categoryBits = 0x0002
-    bodyFixture.filter.maskBits = 0x0004
-    bodyFixture.filter.groupIndex = -1
-
     val footShape = new PolygonShape()
     footShape.setAsBox(image.getWidth / 20, image.getHeight * 3 / 4 / 20, new Vec2(0, image.getHeight / 4 / 20), 0f)
     val footFixture = new FixtureDef()
     footFixture.shape = footShape
     footFixture.filter.categoryBits = 0x0001
-    footFixture.filter.maskBits = 0x0001
+    footFixture.filter.maskBits = 0x0007
     footFixture.filter.groupIndex = 1
 
     val body = world.createBody(bodyDef)
-    body.createFixture(bodyFixture)
     body.createFixture(footFixture)
     body.setUserData(this)
     body

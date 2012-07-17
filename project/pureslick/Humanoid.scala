@@ -3,7 +3,7 @@ package pureslick
 import org.jbox2d.dynamics._
 import org.jbox2d.collision.shapes.PolygonShape
 import org.jbox2d.common.Vec2
-import org.newdawn.slick.Image
+import org.newdawn.slick.{Color, Image}
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,12 +15,17 @@ import org.newdawn.slick.Image
 
 trait Humanoid extends GameObject {
   var health: Int
+  var displayDamaged = 0
 
   def die = {
     isGarbage = true
   }
+  override def update() = {
+    if(displayDamaged > 0) displayDamaged -= 1
+  }
 
   def damaged(amount: Int) = {
+    displayDamaged = 3
     health -= amount
     if (health < 0) die
   }
@@ -41,6 +46,7 @@ trait Humanoid extends GameObject {
     bodyFixture.filter.categoryBits = 0x0002
     bodyFixture.filter.maskBits = 0x0004
     bodyFixture.filter.groupIndex = -1
+    bodyFixture.userData = this
 
     val footShape = new PolygonShape()
     footShape.setAsBox(40 / 20, 20 / 20, new Vec2(0, 40 / 20), 0f)
@@ -49,12 +55,18 @@ trait Humanoid extends GameObject {
     footFixture.filter.categoryBits = 0x0001
     footFixture.filter.maskBits = 0x0001
     footFixture.filter.groupIndex = 1
+    footFixture.userData = this
 
     val body = world.createBody(bodyDef)
     body.createFixture(bodyFixture)
     body.createFixture(footFixture)
     body.setUserData(this)
     body
+  }
+
+  override def render() = {
+    val color = if (displayDamaged > 0) {new Color(1f,0,0,1f)} else {new Color(1f,1f,1f,1f)}
+    image.draw((body.getPosition.x - image.getWidth/20)*10, (body.getPosition.y - image.getHeight/20)*10,color)
   }
 
 }
