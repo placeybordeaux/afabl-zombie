@@ -4,6 +4,7 @@ import org.newdawn.slick.Image
 import org.jbox2d.dynamics.{Fixture, World}
 import org.jbox2d.common.Vec2
 import collection.mutable.ListBuffer
+import util.Random
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,7 +20,7 @@ trait Human extends Humanoid {
   var cooldown = 0
   var bullets = ListBuffer[Bullet]()
   val world: World
-  var speed = 20
+  var speed = (20 + (Random.nextFloat - .5)*3).toFloat
 
   override def damaged(amount: Int) = {
     super.damaged(amount)

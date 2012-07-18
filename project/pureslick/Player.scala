@@ -21,7 +21,7 @@ class Player(img: Image, b2World: World) extends Human {
   ammo = 50
 
   def handleInput(input: Input) = {
-    var x, y = 0
+    var x, y = 0f
     if (input.isKeyDown(Input.KEY_S))
       y += speed
     if (input.isKeyDown(Input.KEY_W))

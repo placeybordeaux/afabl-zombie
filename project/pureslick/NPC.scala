@@ -42,7 +42,7 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
           }
         }
       }
-    if (zombieNearby && trace_path(direction.mul(-1.0f)).isInstanceOf[Zombie] && cooldown > 0 && ammo > 0){
+    if (zombieNearby  && cooldown > 0 && ammo > 0 && trace_path(direction.mul(-1.0f)).isInstanceOf[Zombie]){
       println("fired!")
       fireBullet((fireDirection.mul(-3.0f)))
     }

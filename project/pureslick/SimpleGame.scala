@@ -20,38 +20,43 @@ object SimpleGame extends BasicGame("Zombie") {
   var crosshairs: Image = null
   var gameObjects: List[GameObject] = List()
   var background: List[Grass] = List()
+  var level = 1f
 
   def init(gc: GameContainer) = {
-    createLevel()
-
+    for(x <- 0 to 10)
+      for (y <- 0 to 10)
+        background ::= new Grass(x*100,y*80)
     background = background.sortWith(_.y < _.y)
-    player = new Player(new Image("data/player.png"), b2World)
-    gameObjects ::= player
-    //gameObjects ::= new NPC(b2World, 0, 10)
-    //gameObjects ::= new Clip(b2World, 0,10)
-    //gameObjects ::= new Zombie(b2World, 20, 10)
 
+    createWave(level)
     gc.setMouseCursor(new Image("data/crosshairs.png"), 20, 20)
-
     b2World.setContactListener(new ContactCallbacks)
-    //debug draw
-    val sDD = new Slick2dDebugDraw(gc.getGraphics,gc)
-    sDD.setFlags(0x0001)
-    b2World.setDebugDraw(sDD)
   }
 
-  def createLevel() = {
+  def clearWave() = {
+    var body = b2World.getBodyList
+    while (body != null){
+      b2World.destroyBody(body)
+      body = body.getNext
+    }
+
+    gameObjects = List()
+  }
+
+  def createWave(level: Float) = {
+    player = new Player(new Image("data/player.png"), b2World)
+    gameObjects ::= player
+
     for(x <- 0 to 10){
       for (y <- 0 to 10){
-        background ::= new Grass(x*100,y*80)
         if (y < 10){
           if (Random.nextFloat() > .9)
             gameObjects ::= new Wall(b2World,x*10,y*8)
-          if (Random.nextFloat() > .8)
+          if (Random.nextFloat() > .8 + level/100)
             gameObjects ::= new Clip(b2World,x*10,y*8)
           if (Random.nextFloat() > .8)
             gameObjects ::= new NPC(b2World,x*10,y*8)
-          if (Random.nextFloat() > .93)
+          if (Random.nextFloat() > .98 - level/100 && x+y > 4)
             gameObjects ::= new Zombie(b2World,x*10,y*8)
         }
           }
@@ -70,6 +75,11 @@ object SimpleGame extends BasicGame("Zombie") {
   }
 
   def update(gc: GameContainer, delta: Int) = {
+    if (gameObjects.filter(_.isInstanceOf[Zombie]).size == 0){
+      level += 1
+      clearWave
+      createWave(level)
+    }
     //simulate
     val observation = new Observation(gameObjects.filter(_.isInstanceOf[Humanoid]).asInstanceOf[List[Humanoid]])
     val input = gc.getInput
@@ -78,17 +88,28 @@ object SimpleGame extends BasicGame("Zombie") {
     player.update()
     b2World.step(1 / 60f, 6, 2)
 
+    //create random ammo
+
+    if(Random.nextFloat > 0.98){
+      gameObjects ::= new Clip(b2World, Random.nextInt(10*10), Random.nextInt(8*10),Random.nextInt(30))
+    }
+
     //clean up
+    cleanup
+
+  }
+
+  def cleanup() = {
     for(garbage <- gameObjects.filter(_.isGarbage)){
-        garbage match {
-          case human: Human =>
-            gameObjects ::= new Zombie(b2World, human.body.getPosition)
-            b2World.destroyBody(garbage.body)
-            if (human.ammo>0) new Clip(b2World, human.body.getPosition,human.ammo)
-          case zombie: Zombie =>
-            b2World.destroyBody(zombie.body)
-          case _ =>
-            b2World.destroyBody(garbage.body)
+      garbage match {
+        case human: Human =>
+          gameObjects ::= new Zombie(b2World, human.body.getPosition)
+          b2World.destroyBody(human.body)
+          if (human.ammo>0) new Clip(b2World, human.body.getPosition,human.ammo)
+        case zombie: Zombie =>
+          b2World.destroyBody(zombie.body)
+        case _ =>
+          b2World.destroyBody(garbage.body)
       }
     }
     gameObjects = gameObjects.filterNot(_.isGarbage)
