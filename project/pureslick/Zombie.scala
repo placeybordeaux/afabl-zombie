@@ -17,7 +17,7 @@ class Zombie(world: World, x: Float, y: Float) extends Humanoid {
   var image = new Image("data/zombie.png")
   val body = createBody(world, new Vec2(x, y))
   var health = 150
-  val speed: Float = (7 + (Random.nextFloat - .5)*2).toFloat
+  val speed: Float = (7 + (Random.nextFloat - .5)*5).toFloat
 
   def this(world: World) = {
     this(world,100,100)
@@ -36,7 +36,7 @@ class Zombie(world: World, x: Float, y: Float) extends Humanoid {
     //end wandering behavior
     var closest = 9999f
     val farthest = 40
-    for (humanoid <- observation.humanoids){
+    for (humanoid <- observation.objects){
       if (humanoid.isInstanceOf[Human]){
         val newDirection = humanoid.body.getPosition.sub(body.getPosition)
         if (newDirection.length() < closest && newDirection.length() < farthest){

@@ -19,6 +19,7 @@ class Player(img: Image, b2World: World) extends Human {
   val world = b2World
   val body = createBody(world)
   ammo = 50
+  speed = 24
 
   def handleInput(input: Input) = {
     var x, y = 0f

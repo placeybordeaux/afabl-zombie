@@ -1,10 +1,11 @@
 package pureslick
 
-import org.newdawn.slick.{Image, AppGameContainer, BasicGame, GameContainer}
 import org.jbox2d.dynamics.World
 import org.jbox2d.common.Vec2
 import org.newdawn.slick.tiled.TiledMap
-import util.Random
+import scala.util.Random
+import org.newdawn.slick._
+import java.awt.Font
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,6 +22,7 @@ object SimpleGame extends BasicGame("Zombie") {
   var gameObjects: List[GameObject] = List()
   var background: List[Grass] = List()
   var level = 1f
+  var display_wave = 30
 
   def init(gc: GameContainer) = {
     for(x <- 0 to 10)
@@ -30,6 +32,7 @@ object SimpleGame extends BasicGame("Zombie") {
 
     createWave(level)
     gc.setMouseCursor(new Image("data/crosshairs.png"), 20, 20)
+
     b2World.setContactListener(new ContactCallbacks)
   }
 
@@ -44,6 +47,7 @@ object SimpleGame extends BasicGame("Zombie") {
   }
 
   def createWave(level: Float) = {
+    display_wave = 90
     player = new Player(new Image("data/player.png"), b2World)
     gameObjects ::= player
 
@@ -52,8 +56,8 @@ object SimpleGame extends BasicGame("Zombie") {
         if (y < 10){
           if (Random.nextFloat() > .9)
             gameObjects ::= new Wall(b2World,x*10,y*8)
-          if (Random.nextFloat() > .8 + level/100)
-            gameObjects ::= new Clip(b2World,x*10,y*8)
+          //if (Random.nextFloat() > .8 + level/100)
+            //gameObjects ::= new Clip(b2World,x*10,y*8)
           if (Random.nextFloat() > .8)
             gameObjects ::= new NPC(b2World,x*10,y*8)
           if (Random.nextFloat() > .98 - level/100 && x+y > 4)
@@ -75,13 +79,14 @@ object SimpleGame extends BasicGame("Zombie") {
   }
 
   def update(gc: GameContainer, delta: Int) = {
+    display_wave -= 1
     if (gameObjects.filter(_.isInstanceOf[Zombie]).size == 0){
       level += 1
       clearWave
       createWave(level)
     }
     //simulate
-    val observation = new Observation(gameObjects.filter(_.isInstanceOf[Humanoid]).asInstanceOf[List[Humanoid]])
+    val observation = new Observation(gameObjects)
     val input = gc.getInput
     player.handleInput(input)
     gameObjects.foreach(_.update(observation))
@@ -90,7 +95,7 @@ object SimpleGame extends BasicGame("Zombie") {
 
     //create random ammo
 
-    if(Random.nextFloat > 0.98){
+    if(Random.nextFloat > 0.98 + (level/1000)){
       gameObjects ::= new Clip(b2World, Random.nextInt(10*10), Random.nextInt(8*10),Random.nextInt(30))
     }
 
@@ -105,7 +110,7 @@ object SimpleGame extends BasicGame("Zombie") {
         case human: Human =>
           gameObjects ::= new Zombie(b2World, human.body.getPosition)
           b2World.destroyBody(human.body)
-          if (human.ammo>0) new Clip(b2World, human.body.getPosition,human.ammo)
+          if (human.ammo>0) gameObjects ::= new Clip(b2World, human.body.getPosition,human.ammo)
         case zombie: Zombie =>
           b2World.destroyBody(zombie.body)
         case _ =>
@@ -123,12 +128,17 @@ object SimpleGame extends BasicGame("Zombie") {
     gameObjects.foreach(_.render)
     //b2World.drawDebugData()
     g.translate(-400 + player.body.getPosition.x*10, -300 + player.body.getPosition.y*10)
-    g.drawString("Ammo:" + player.ammo.toString,0,0)
+    g.drawString("Ammo:" + player.ammo.toString,0,585)
+    g.drawString("Zombies left: " + gameObjects.filter(_.isInstanceOf[Zombie]).size,600,585)
+    //if(display_wave > 0)
+    g.drawString("Wave " + level.toInt,380,0)
+    g.resetFont()
   }
 
   def main(args: Array[String]) = {
     val app = new AppGameContainer(this)
     app.setDisplayMode(800, 600, false)
+    app.setTargetFrameRate(60)
     app.start()
   }
 

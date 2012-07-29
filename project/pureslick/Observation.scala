@@ -8,8 +8,8 @@ package pureslick
  * To change this template use File | Settings | File Templates.
  */
 
-class Observation(listOfHumanoids: List[Humanoid]) {
-  def humanoids = listOfHumanoids
+class Observation(listOfGameObjects: List[GameObject]) {
+  def objects = listOfGameObjects
 
 
 }

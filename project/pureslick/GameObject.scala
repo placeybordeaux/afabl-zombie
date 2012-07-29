@@ -25,5 +25,11 @@ trait GameObject extends Renderable{
     image.draw((body.getPosition.x - image.getWidth/20)*10, (body.getPosition.y - image.getHeight/20)*10)
   }
 
+  def distanceTo(other: GameObject): Float = {
+    if (other == null) return 9999
+    if (other.body == null) return 9999
+    body.getPosition.sub(other.body.getPosition).length()
+  }
+
 
 }

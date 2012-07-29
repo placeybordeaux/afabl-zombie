@@ -15,8 +15,8 @@ import util.Random
  */
 
 trait Human extends Humanoid {
-  var health = 100
-  var ammo = 0
+  var health = 130
+  var ammo = 2
   var cooldown = 0
   var bullets = ListBuffer[Bullet]()
   val world: World
@@ -24,51 +24,51 @@ trait Human extends Humanoid {
 
   override def damaged(amount: Int) = {
     super.damaged(amount)
-    image = new Image("data/player" + (1 + ((math.max(health,0)*4)/100)).toString + ".png")
+    image = new Image("data/player" + (1 + ((math.max(health,0)*4)/130)).toString + ".png")
   }
 
   def fireBullet(vec: Vec2): Unit = {
     fireBullet(vec.x,vec.y)
   }
 
-  def trace_path(vec: Vec2): GameObject = {
-    def getPositionVec(): Vec2 = {
-      var posx, posy = 0f
-      if (math.abs(vec.x) >= math.abs(vec.y)){
-        posx = body.getPosition.x + (1 + image.getWidth / 40)*(vec.x/math.abs(vec.x))
-        posy = body.getPosition.y + 3
-      }
-      else {
-        posy = body.getPosition.y + (1 + image.getHeight / 40)*(vec.y/math.abs(vec.y))
-        posx = body.getPosition.x
-      }
-      new Vec2(posx, posy)
+  def getPositionVec(vec: Vec2): Vec2 = {
+    var posx, posy = 0f
+    if (math.abs(vec.x) >= math.abs(vec.y)){
+      posx = body.getPosition.x + (1 + image.getWidth / 40)*(vec.x/math.abs(vec.x))
+      posy = body.getPosition.y + 3
     }
+    else {
+      posy = body.getPosition.y + (1 + image.getHeight / 40)*(vec.y/math.abs(vec.y))
+      posx = body.getPosition.x
+    }
+    new Vec2(posx, posy)
+  }
+
+
+  def Hits_zombie(vec: Vec2): Boolean = {
     val callback = new tracingCallback()
-    world.raycast(callback,vec,getPositionVec)
-    callback.gameObject
+    world.raycast(callback,getPositionVec(vec),vec.add(new Vec2(0,5)))
+    if(!callback.gameObject.isInstanceOf[Zombie]) return false
+
+    world.raycast(callback,getPositionVec(vec),vec.add(new Vec2(0,-5)))
+    if(!callback.gameObject.isInstanceOf[Zombie]) return false
+
+    world.raycast(callback,getPositionVec(vec),vec.add(new Vec2(5,0)))
+    if(!callback.gameObject.isInstanceOf[Zombie]) return false
+
+    world.raycast(callback,getPositionVec(vec),vec.add(new Vec2(-5,0)))
+    if(!callback.gameObject.isInstanceOf[Zombie]) return false
+    return true
   }
 
   def fireBullet(mouseX: Float, mouseY: Float) = {
     if (!(mouseY == mouseX && mouseY == 0)){
-    def getPositionVec(): Vec2 = {
-      var posx, posy = 0f
-      if (math.abs(mouseX) >= math.abs(mouseY)){
-        posx = body.getPosition.x + (1 + image.getWidth / 40)*(mouseX/math.abs(mouseX))
-        posy = body.getPosition.y + 3
-      }
-      else {
-        posy = body.getPosition.y + (1 + image.getHeight / 40)*(mouseY/math.abs(mouseY))
-        posx = body.getPosition.x
-      }
-      new Vec2(posx, posy)
-    }
     if (cooldown == 0 && ammo > 0){
-      val pos = getPositionVec
+      val pos = getPositionVec(new Vec2(mouseX,mouseY))
       val direction = new Vec2(mouseX - pos.x, mouseY - pos.y)
       direction.normalize
       bullets.append(new Bullet(world, pos, direction.mul(600000)))
-      cooldown = 30
+      cooldown = 20
       ammo -= 1
     }
   }
