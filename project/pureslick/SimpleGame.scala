@@ -95,7 +95,7 @@ object SimpleGame extends BasicGame("Zombie") {
 
     //create random ammo
 
-    if(Random.nextFloat > 0.98 + (level/1000)){
+    if(Random.nextFloat < 0.02){
       gameObjects ::= new Clip(b2World, Random.nextInt(10*10), Random.nextInt(8*10),Random.nextInt(30))
     }
 

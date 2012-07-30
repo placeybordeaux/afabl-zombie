@@ -56,7 +56,7 @@ class NPC(b2World: World, x: Float, y: Float) extends Human {
     if (this.distanceTo(nearestZombie) < 20){
       val d = body.getPosition.sub(nearestZombie.body.getPosition)
       direction = direction.add(d.mul(.3f/(d.length() + 0.1f)))
-    }else if(distanceTo(nearestClip)< 50){
+    }else if(distanceTo(nearestClip)< 10){
       val d = nearestClip.body.getPosition.sub(body.getPosition)
       direction = direction.add(d mul .2f/(d.length() + 0.1f))
     }else if (distanceTo(nearestHuman) < 90){
